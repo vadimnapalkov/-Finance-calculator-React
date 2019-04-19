@@ -24,8 +24,6 @@ class Settings extends Component {
       isOpenIncRename: false,
       newnamepay: "",
       newnameinc: "",
-      namepay: "",
-      nameinc: "",
       idpay: "",
       idinc: "",
       Save: true,
@@ -39,7 +37,7 @@ class Settings extends Component {
       <div key={index} className="categories">
         <li className="li">{pay.name}</li>
         <input
-          id={pay.id}
+          id={pay._id}
           className="update"
           type="image"
           name={pay.name}
@@ -47,7 +45,7 @@ class Settings extends Component {
           onClick={this.toggleModalPayRename}
         />
         <input
-          id={pay.id}
+          id={pay._id}
           name={pay.name}
           type="image"
           src="/images/delete.png"
@@ -63,7 +61,7 @@ class Settings extends Component {
       <div key={index} className="categories">
         <li className="li">{inc.name}</li>
         <input
-          id={inc.id}
+          id={inc._id}
           className="update"
           type="image"
           name={inc.name}
@@ -71,7 +69,7 @@ class Settings extends Component {
           onClick={this.toggleModalIncRename}
         />
         <input
-          id={inc.id}
+          id={inc._id}
           name={inc.name}
           type="image"
           src="/images/delete.png"
@@ -93,36 +91,24 @@ class Settings extends Component {
     this.setState({
       isOpenPayRename: !this.state.isOpenPayRename
     });
-    this.props.RenameCategoryPay(
-      this.state.idpay,
-      this.state.newnamepay,
-      this.state.namepay,
-      this.props.user.id
-    );
+    this.props.RenameCategoryPay(this.state.idpay, this.state.newnamepay);
   };
   onRenameCategoryInc = () => {
     this.setState({
       isOpenIncRename: !this.state.isOpenIncRename
     });
-    this.props.RenameCategoryInc(
-      this.state.idinc,
-      this.state.newnameinc,
-      this.state.nameinc,
-      this.props.user.id
-    );
+    this.props.RenameCategoryInc(this.state.idinc, this.state.newnameinc);
   };
   onDeleteCategoryPay = e => {
     const { id, name } = e.currentTarget;
-    const userid = this.props.user.id;
     if (confirm("Вы действительно хотите удалить категорию " + name + "?")) {
-      this.props.DeletePayCategory(id, name, userid);
+      this.props.DeletePayCategory(id);
     }
   };
   onDeleteCategoryInc = e => {
     const { id, name } = e.currentTarget;
-    const userid = this.props.user.id;
     if (confirm("Вы действительно хотите удалить категорию " + name + "?")) {
-      this.props.DeleteIncCategory(id, name, userid);
+      this.props.DeleteIncCategory(id);
     }
   };
   handleChange = e => {
@@ -182,7 +168,6 @@ class Settings extends Component {
     this.setState({
       isOpenPayRename: !this.state.isOpenPayRename,
       newnamepay: name,
-      namepay: name,
       idpay: id,
       Save: true,
       classInput: "error1",
@@ -194,7 +179,6 @@ class Settings extends Component {
     this.setState({
       isOpenIncRename: !this.state.isOpenIncRename,
       newnameinc: name,
-      nameinc: name,
       idinc: id,
       Save: true,
       classInput: "error1",

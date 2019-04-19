@@ -113,10 +113,10 @@ export const AddCategoryPay = (userid, namepay) => async dispatch => {
   }
 };
 
-export const DeletePayCategory = (id, name, userid) => async dispatch => {
+export const DeletePayCategory = id => async dispatch => {
   dispatch({ type: PAYMENTS_DELETE_REQUEST });
 
-  const Delete = await PaymentsDeleteApi(id, name, userid);
+  const Delete = await PaymentsDeleteApi(id);
   if (Delete) {
     dispatch({
       type: PAYMENTS_DELETE_SUCCESS,
@@ -131,10 +131,10 @@ export const DeletePayCategory = (id, name, userid) => async dispatch => {
   }
 };
 
-export const DeleteIncCategory = (id, name, userid) => async dispatch => {
+export const DeleteIncCategory = id => async dispatch => {
   dispatch({ type: INCOME_DELETE_REQUEST });
 
-  const Delete = await IncomeDeleteApi(id, name, userid);
+  const Delete = await IncomeDeleteApi(id);
   if (Delete) {
     dispatch({
       type: INCOME_DELETE_SUCCESS,
@@ -149,20 +149,14 @@ export const DeleteIncCategory = (id, name, userid) => async dispatch => {
   }
 };
 
-export const RenameCategoryPay = (
-  id,
-  newname,
-  name,
-  userid
-) => async dispatch => {
+export const RenameCategoryPay = (id, newname) => async dispatch => {
   dispatch({ type: PAYMENTS_RENAME_REQUEST });
 
-  const newpay = await PaymentsRenameApi(id, newname, name, userid);
+  const newpay = await PaymentsRenameApi(id, newname);
   if (newpay) {
-    const pay = { id: id, name: name };
     dispatch({
       type: PAYMENTS_RENAME_SUCCESS,
-      payload: { pay: pay, newpay: newpay }
+      payload: newpay
     });
   } else {
     dispatch({
@@ -173,20 +167,14 @@ export const RenameCategoryPay = (
   }
 };
 
-export const RenameCategoryInc = (
-  id,
-  newname,
-  name,
-  userid
-) => async dispatch => {
+export const RenameCategoryInc = (id, newname) => async dispatch => {
   dispatch({ type: INCOME_RENAME_REQUEST });
 
-  const newinc = await IncomeRenameApi(id, newname, name, userid);
+  const newinc = await IncomeRenameApi(id, newname);
   if (newinc) {
-    const inc = { id: id, name: name };
     dispatch({
       type: INCOME_RENAME_SUCCESS,
-      payload: { inc: inc, newinc: newinc }
+      payload: newinc
     });
   } else {
     dispatch({

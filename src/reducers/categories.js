@@ -77,12 +77,12 @@ export function CategoriesReducer(state = initialState, action) {
       return { ...state, error: "" };
 
     case PAYMENTS_DELETE_SUCCESS:
-      const deletepay = state.payments;
-      deletepay.splice(
-        deletepay.findIndex(pay => pay.id === action.payload.id),
+      const deletepayment = state.payments;
+      deletepayment.splice(
+        deletepayment.findIndex(payment => payment._id === action.payload._id),
         1
       );
-      return { ...state, payments: deletepay };
+      return { ...state, payments: deletepayment };
 
     case PAYMENTS_DELETE_FAIL:
       return { ...state, error: action.payload.message };
@@ -91,12 +91,12 @@ export function CategoriesReducer(state = initialState, action) {
       return { ...state, error: "" };
 
     case INCOME_DELETE_SUCCESS:
-      const deleteinc = state.income;
-      deleteinc.splice(
-        deleteinc.findIndex(inc => inc.id === action.payload.id),
+      const deleteincome = state.income;
+      deleteincome.splice(
+        deleteincome.findIndex(income => income._id === action.payload._id),
         1
       );
-      return { ...state, income: deleteinc };
+      return { ...state, income: deleteincome };
 
     case INCOME_DELETE_FAIL:
       return { ...state, error: action.payload.message };
@@ -106,8 +106,8 @@ export function CategoriesReducer(state = initialState, action) {
 
     case PAYMENTS_RENAME_SUCCESS:
       const renamepay = state.payments;
-      renamepay.find(pay => pay.id === action.payload.pay.id).name =
-        action.payload.newpay.name;
+      renamepay.find(payment => payment._id === action.payload._id).name =
+        action.payload.name;
       return { ...state, payments: renamepay };
 
     case PAYMENTS_RENAME_FAIL:
@@ -118,8 +118,8 @@ export function CategoriesReducer(state = initialState, action) {
 
     case INCOME_RENAME_SUCCESS:
       const renameinc = state.income;
-      renameinc.find(inc => inc.id === action.payload.inc.id).name =
-        action.payload.newinc.name;
+      renameinc.find(income => income._id === action.payload._id).name =
+        action.payload.name;
       return { ...state, income: renameinc };
 
     case INCOME_RENAME_FAIL:
