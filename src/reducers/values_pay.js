@@ -30,7 +30,7 @@ export function ValuesPayReducer(state = initialState, action) {
 
     case PAYMENTS_ADD_VALUES_SUCCESS:
       const valuesadd = state.values;
-      valuesadd.unshift(action.payload);
+      valuesadd.unshift(action.payload[0]);
       return { ...state, values: valuesadd };
 
     case PAYMENTS_ADD_VALUES_FAIL:

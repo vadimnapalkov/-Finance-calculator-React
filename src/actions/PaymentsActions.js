@@ -28,12 +28,12 @@ export const FetchPaymentsValues = userid => async dispatch => {
 
 export const AddPaymentsValue = (
   userid,
-  categoryname,
+  categoryId,
   value
 ) => async dispatch => {
   dispatch({ type: PAYMENTS_ADD_VALUES_REQUEST });
 
-  const Value = await PaymentsAddValuesApi(userid, categoryname, value);
+  const Value = await PaymentsAddValuesApi(userid, categoryId, value);
   if (Value) {
     dispatch({
       type: PAYMENTS_ADD_VALUES_SUCCESS,

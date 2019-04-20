@@ -16,17 +16,17 @@ class Payments extends Component {
       value: ""
     };
   }
-  renderPaymentsValues(pay, index) {
+  renderPaymentsValues(payment, index) {
     return (
       <div key={index} className="categories">
-        <li className="lipay">{pay.categoryname}</li>
-        <p className="update">${pay.val}</p>
+        <li className="lipay">{payment.categoryname}</li>
+        <p className="update">${payment.value}</p>
       </div>
     );
   }
-  renderDatalist(pay, index) {
-    if (pay.name === "Other") return null;
-    return <option key={index}>{pay.name}</option>;
+  renderDatalist(paymentCategories, index) {
+    if (paymentCategories.name === "Other") return null;
+    return <option key={index}>{paymentCategories.name}</option>;
   }
   onAddValue = () => {
     if (
@@ -37,7 +37,9 @@ class Payments extends Component {
       this.setState({ categoryname: "", value: "" });
       this.props.AddPaymentsValue(
         this.props.user.id,
-        this.state.categoryname,
+        this.props.categories.payments.find(
+          pay => pay.name === this.state.categoryname
+        )._id,
         this.state.value
       );
     } else {
@@ -50,16 +52,16 @@ class Payments extends Component {
     if (id === "categoryname") this.CheckCategoryName(value);
   };
   CheckCategoryName = value => {
-    if (this.props.categories.payments.find(pay => pay.name === value)) {
-      const val = this.props.payments.values.find(
+    if (this.props.payments.values.find(pay => pay.categoryname === value)) {
+      const valueRes = this.props.payments.values.find(
         pay => pay.categoryname === value
-      ).val;
-      this.setState({ value: val });
+      ).value;
+      this.setState({ value: valueRes });
     } else this.setState({ value: "" });
   };
   validate = () => {
     const { categoryname, value } = this.state;
-    if (categoryname.trim() && value.trim()) {
+    if (categoryname && value) {
       return true;
     }
     return false;
@@ -87,10 +89,10 @@ class Payments extends Component {
             value={categoryname}
           />
           <datalist id="category" className="category">
-            {this.props.categories.payments.map((pay, index) =>
-              this.renderDatalist(pay, index)
+            {this.props.categories.payments.map((paymentCategories, index) =>
+              this.renderDatalist(paymentCategories, index)
             )}
-            <option>Other</option>
+            <option key={0}>Other</option>;
           </datalist>
           <p>
             <input
