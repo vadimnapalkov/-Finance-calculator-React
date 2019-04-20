@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link, withRouter } from "react-router";
 
 class User extends Component {
   render() {
@@ -7,7 +8,7 @@ class User extends Component {
       <div>
         <div className="menu">
           <span className="name">{this.props.user.name}</span>
-          <a href="/login">logout</a>
+          <Link to="/login">logout</Link>
         </div>
       </div>
     );
@@ -20,7 +21,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  null
-)(User);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    null
+  )(User)
+);

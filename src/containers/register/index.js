@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { RegisterUser } from "../../actions/UserActions";
+import { RegisterUser, LogoutUser } from "../../actions/UserActions";
 import { browserHistory } from "react-router";
 
 class Register extends Component {
@@ -27,6 +27,9 @@ class Register extends Component {
     }
     return false;
   };
+  componentWillMount() {
+    this.props.LogoutUser();
+  }
   componentWillReceiveProps(nextProps) {
     if (nextProps.user.name) browserHistory.push("/payments");
   }
@@ -83,7 +86,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  RegisterUser
+  RegisterUser,
+  LogoutUser
 };
 
 export default connect(

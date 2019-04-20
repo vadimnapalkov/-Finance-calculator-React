@@ -4,13 +4,14 @@ import {
   LOGIN_FAIL,
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
-  REGISTER_FAIL
+  REGISTER_FAIL,
+  LOGOUT_SUCCESS
 } from "../constants/User";
 
-const initialState = {
-  user: "",
-  error: ""
-};
+var initialState = {};
+
+const User = JSON.parse(localStorage.getItem("User_Finance"));
+if (User != null) initialState = User;
 
 export function userReducer(state = initialState, action) {
   switch (action.type) {
@@ -33,6 +34,10 @@ export function userReducer(state = initialState, action) {
 
     case REGISTER_FAIL:
       return { ...state, error: action.payload.message };
+
+    case LOGOUT_SUCCESS:
+      state = action.payload;
+      return state;
 
     default:
       return state;

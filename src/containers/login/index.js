@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { LoginUser } from "../../actions/UserActions";
+import { LoginUser, LogoutUser } from "../../actions/UserActions";
 import { browserHistory } from "react-router";
 
 class Login extends Component {
@@ -27,6 +27,9 @@ class Login extends Component {
     }
     return false;
   };
+  componentWillMount() {
+    this.props.LogoutUser();
+  }
   componentWillReceiveProps(nextProps) {
     if (nextProps.user.name) browserHistory.push("/payments");
   }
@@ -84,7 +87,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  LoginUser
+  LoginUser,
+  LogoutUser
 };
 
 export default connect(
