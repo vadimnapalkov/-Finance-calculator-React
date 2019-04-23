@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { LoginUser, LogoutUser } from "../../actions/UserActions";
+import { RegisterUser, LogoutUser } from "../../actions/UserActions";
 import { browserHistory } from "react-router";
 
-class Login extends Component {
+class Register extends Component {
   state = {
     name: "",
     pass: ""
   };
-  onLogin = e => {
+  onRegister = e => {
     e.preventDefault();
     const { name, pass } = this.state;
-    this.props.LoginUser({
+    this.props.RegisterUser({
       name: name,
       pass: pass
     });
@@ -35,7 +35,6 @@ class Login extends Component {
   }
   render() {
     const { name, pass } = this.state;
-
     return (
       <div>
         <div className="menu">
@@ -43,7 +42,7 @@ class Login extends Component {
           <a href="/register">register</a>
         </div>
         <div className="reg">
-          <h1>Login</h1>
+          <h1>Register</h1>
           <p>Fill in the form below to sign up!</p>
           {this.props.user.error && <p>{this.props.user.error}</p>}
           <form>
@@ -69,7 +68,7 @@ class Login extends Component {
               <input
                 type="button"
                 disabled={!this.validate()}
-                onClick={this.onLogin}
+                onClick={this.onRegister}
                 value="Sign Up"
               />
             </p>
@@ -87,11 +86,11 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  LoginUser,
+  RegisterUser,
   LogoutUser
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Login);
+)(Register);
