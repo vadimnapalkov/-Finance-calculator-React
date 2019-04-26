@@ -19,7 +19,9 @@ class Payments extends Component {
   renderPaymentsValues(payment, index) {
     return (
       <div key={index} className="categories">
-        <li className="lipay">{payment.categoryname}</li>
+        <li className="lipay" title={payment.categoryname}>
+          {payment.categoryname}
+        </li>
         <p className="update">${payment.value}</p>
       </div>
     );
@@ -39,7 +41,7 @@ class Payments extends Component {
         this.props.user.id,
         this.props.categories.payments.find(
           pay => pay.name === this.state.categoryname
-        )._id,
+        ).id,
         this.state.value
       );
     } else {

@@ -79,7 +79,7 @@ export function CategoriesReducer(state = initialState, action) {
     case PAYMENTS_DELETE_SUCCESS:
       const deletepayment = state.payments;
       deletepayment.splice(
-        deletepayment.findIndex(payment => payment._id === action.payload._id),
+        deletepayment.findIndex(payment => payment.id === action.payload.id),
         1
       );
       return { ...state, payments: deletepayment };
@@ -93,7 +93,7 @@ export function CategoriesReducer(state = initialState, action) {
     case INCOME_DELETE_SUCCESS:
       const deleteincome = state.income;
       deleteincome.splice(
-        deleteincome.findIndex(income => income._id === action.payload._id),
+        deleteincome.findIndex(income => income.id === action.payload.id),
         1
       );
       return { ...state, income: deleteincome };
@@ -106,7 +106,7 @@ export function CategoriesReducer(state = initialState, action) {
 
     case PAYMENTS_RENAME_SUCCESS:
       const renamepay = state.payments;
-      renamepay.find(payment => payment._id === action.payload._id).name =
+      renamepay.find(payment => payment.id === action.payload.id).name =
         action.payload.name;
       return { ...state, payments: renamepay };
 
@@ -118,7 +118,7 @@ export function CategoriesReducer(state = initialState, action) {
 
     case INCOME_RENAME_SUCCESS:
       const renameinc = state.income;
-      renameinc.find(income => income._id === action.payload._id).name =
+      renameinc.find(income => income.id === action.payload.id).name =
         action.payload.name;
       return { ...state, income: renameinc };
 

@@ -156,6 +156,7 @@ button {
 .category {
   margin: auto;
   margin-top: -45px;
+  padding-left: 15px;
 }
 .categorypay {
   margin: auto;
@@ -185,16 +186,22 @@ button {
 }
 .li {
   float: left;
-  width: 561px;
+  width: 437px;
+  margin-right: 148px;
   margin-top: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .lipay {
   float: left;
-  width: 561px;
+  width: 408px;
+  margin-right: 193px;
   margin-top: 4px;
   list-style: none;
-  /* list-style-image: url(/images/cash.png); */
-
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   background: url(/images/cash.png) no-repeat 0 -2px;
   padding-left: 31px;
 }

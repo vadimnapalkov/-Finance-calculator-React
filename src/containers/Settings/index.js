@@ -35,9 +35,11 @@ class Settings extends Component {
     if (pay.name === "Other") return null;
     return (
       <div key={index} className="categories">
-        <li className="li">{pay.name}</li>
+        <li className="li" title={pay.name}>
+          - {pay.name}
+        </li>
         <input
-          id={pay._id}
+          id={pay.id}
           className="update"
           type="image"
           name={pay.name}
@@ -45,7 +47,7 @@ class Settings extends Component {
           onClick={this.toggleModalPayRename}
         />
         <input
-          id={pay._id}
+          id={pay.id}
           name={pay.name}
           type="image"
           src="/images/delete.png"
@@ -59,9 +61,11 @@ class Settings extends Component {
     if (inc.name === "Other") return null;
     return (
       <div key={index} className="categories">
-        <li className="li">{inc.name}</li>
+        <li className="li" title={inc.name}>
+          - {inc.name}
+        </li>
         <input
-          id={inc._id}
+          id={inc.id}
           className="update"
           type="image"
           name={inc.name}
@@ -69,7 +73,7 @@ class Settings extends Component {
           onClick={this.toggleModalIncRename}
         />
         <input
-          id={inc._id}
+          id={inc.id}
           name={inc.name}
           type="image"
           src="/images/delete.png"

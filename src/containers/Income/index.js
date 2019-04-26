@@ -16,7 +16,9 @@ class Income extends Component {
   renderIncomeValues(income, index) {
     return (
       <div key={index} className="categories">
-        <li className="lipay">{income.categoryname}</li>
+        <li className="lipay" title={income.categoryname}>
+          {income.categoryname}
+        </li>
         <p className="update">${income.value}</p>
       </div>
     );
@@ -36,7 +38,7 @@ class Income extends Component {
         this.props.user.id,
         this.props.categories.income.find(
           income => income.name === this.state.categoryname
-        )._id,
+        ).id,
         this.state.value
       );
     } else {
